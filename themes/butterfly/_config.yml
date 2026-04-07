@@ -456,7 +456,7 @@ footer:
 
   copyright:
     # 是否显示主题和框架版权。
-    enable: true
+    enable: false
 
     # 是否显示版本号。
     version: true
@@ -501,7 +501,7 @@ aside:
 
     button:
       # 是否启用作者卡片按钮。
-      enable: true
+      enable: false
 
       # 按钮图标。
       icon: fab fa-github
