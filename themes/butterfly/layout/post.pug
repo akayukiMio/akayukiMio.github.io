@@ -1,0 +1,49 @@
+extends includes/layout.pug
+
+block content
+  - const essayTagName = '大澪神神狂想集'
+  - const isEssayReadingPost = Boolean(page.tags && page.tags.data && page.tags.data.some(item => item.name === essayTagName))
+  - const essayFontDefault = '1.18'
+  - const essayFontMin = '1.02'
+  - const essayFontMax = '1.50'
+  - const essayFontStep = '0.02'
+
+  #post(class=isEssayReadingPost ? 'essay-reading-post' : '')
+    if top_img === false
+      include includes/header/post-info.pug
+
+    if isEssayReadingPost
+      .essay-reading-toolbar(data-essay-font-default=essayFontDefault)
+        label.essay-reading-toolbar__label(for='essay-font-size-range') 字体大小
+        .essay-reading-toolbar__control
+          input#essay-font-size-range.essay-reading-toolbar__slider(type='range' min=essayFontMin max=essayFontMax step=essayFontStep value=essayFontDefault data-essay-font-size-slider)
+          span.essay-reading-toolbar__value(data-essay-font-size-value) 118%
+
+    article#article-container.container.post-content(class=isEssayReadingPost ? 'essay-reading-content' : '' data-essay-reading=isEssayReadingPost ? 'true' : 'false' data-essay-font-default=isEssayReadingPost ? essayFontDefault : null)
+      if theme.noticeOutdate.enable && page.noticeOutdate !== false
+        include includes/post/outdate-notice.pug
+      else
+        !=page.content
+    include includes/post/post-copyright.pug
+    .tag_share
+      if (page.tags.length > 0 && theme.post_meta.post.tags)
+        .post-meta__tag-list
+          each item, index in page.tags.data
+            a(href=url_for(item.path)).post-meta__tags #[=item.name]
+      include includes/third-party/share/index.pug
+
+    if theme.reward.enable && theme.reward.QR_code
+      !=partial('includes/post/reward', {}, {cache: true})
+
+    //- ad
+    if theme.ad && theme.ad.post
+      .ads-wrap!=theme.ad.post
+
+    if theme.post_pagination
+      include includes/pagination.pug
+    if theme.related_post && theme.related_post.enable
+      != related_posts(page,site.posts)
+
+    if page.comments !== false && theme.comments.use
+      - var commentsJsLoad = true
+      !=partial('includes/third-party/comments/index', {}, {cache: true})
