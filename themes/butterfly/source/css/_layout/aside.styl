@@ -35,6 +35,41 @@
       &-description
         margin-top: -.42em
 
+    .card-author-contact
+      display: flex
+      flex-direction: column
+      gap: 10px
+      margin: 18px 0 4px
+
+      &__item
+        display: flex
+        align-items: center
+        justify-content: center
+        gap: 8px
+        padding: 10px 14px
+        border: 1px solid var(--light-grey)
+        background: var(--card-bg)
+        color: var(--font-color)
+        font-size: .95em
+        line-height: 1
+        text-decoration: none
+        transition: all .2s ease-in-out
+        addBorderRadius(999px)
+
+        i
+          color: $theme-color
+          font-size: 1.05em
+
+        &:hover
+          border-color: $theme-color
+          background: $theme-color
+          color: var(--white)
+          text-decoration: none
+          transform: translateY(-2px)
+
+          i
+            color: var(--white)
+
     .site-data
       margin: 14px 0 4px
 

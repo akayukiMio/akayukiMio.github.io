@@ -5,6 +5,17 @@ if theme.aside.card_author.enable
     .author-info-name= config.author
     .author-info-description!= theme.aside.card_author.description || config.description
 
+    .card-author-contact
+      a.card-author-contact__item(href=url_for('/contact/qq/') title='QQ 联系方式')
+        i.fab.fa-qq
+        span QQ
+      a.card-author-contact__item(href='https://space.bilibili.com/355554641' target='_blank' rel='noopener external nofollow' title='哔哩哔哩主页')
+        i.fas.fa-circle-play
+        span 哔哩哔哩
+      a.card-author-contact__item(href='https://www.xiaohongshu.com/user/profile/648b027e000000001001e595' target='_blank' rel='noopener external nofollow' title='小红书主页')
+        i.fas.fa-book-open
+        span 小红书
+
     .site-data
       a(href=url_for(config.archive_dir) + '/')
         .headline= _p('aside.articles')

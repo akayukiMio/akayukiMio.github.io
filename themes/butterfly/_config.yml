@@ -832,7 +832,7 @@ search:
 share:
   # 选择分享方式：sharejs / addtoany
   # 留空表示不启用分享。
-  use: sharejs
+  use:
 
   sharejs:
     # 启用的分享站点，逗号分隔。
